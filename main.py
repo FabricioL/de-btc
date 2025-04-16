@@ -1,36 +1,22 @@
 import de as de
 import btc as btc
 import eada as eada
-# Lista de estudiantes
-estudiantes = ['i_1', 'i_2', 'i_3', 'i_4','i_5','i_6','i_7','i_8']
+import json
 
-# Lista de colegios
-colegios = ['s_1', 's_2', 's_3', 's_4', 's_5', 's_6', 's_7']
-capacidades = {'s_1': 1, 's_2': 1, 's_3':1 ,'s_4':1, 's_5':1, 's_6':1, 's_7':2}
+with open("inputs/estudiantes.json", "r") as f:
+    estudiantes = json.load(f)
 
-# Preferencias de cada estudiante (de mejor a peor)
-preferencias = {
-    'i_1': ['s_1', 's_4', 's_7', 's_2', 's_3', 's_5','s_6'],
-    'i_2': ['s_1', 's_4', 's_2', 's_3', 's_5', 's_6','s_7'],
-    'i_3': ['s_1', 's_2', 's_3', 's_4', 's_5', 's_6','s_7'],
-    'i_4': ['s_4', 's_3', 's_1', 's_2', 's_5', 's_6','s_7'],
-    'i_5': ['s_4', 's_7', 's_1', 's_2', 's_3', 's_5','s_6'],
-    'i_6': ['s_4', 's_5', 's_7', 's_2', 's_3', 's_1','s_2'],
-    'i_7': ['s_1', 's_5', 's_6', 's_2', 's_3', 's_4','s_7'],
-    'i_8': ['s_1', 's_6', 's_4', 's_2', 's_3', 's_5','s_7']
-}
+with open("inputs/colegios.json", "r") as f:
+    colegios = json.load(f)
 
-# Prioridades de los colegios (a quién prefieren aceptar primero)
-prioridades = {
-    's_1': ['i_4', 'i_1', 'i_2','i_3', 'i_7', 'i_5','i_8', 'i_6'],
-    's_2': ['i_2', 'i_3'],
-    's_3': ['i_3', 'i_4'],
-    's_4': ['i_8', 'i_5', 'i_6','i_7', 'i_2', 'i_1','i_4', 'i_3'],
-    's_5': ['i_6', 'i_7'],
-    's_6': ['i_7', 'i_8'],
-    's_7': ['i_5']
+with open("inputs/capacidades.json", "r") as f:
+    capacidades = json.load(f)
 
-}
+with open("inputs/preferencias.json", "r") as f:
+    preferencias = json.load(f)
+
+with open("inputs/prioridades.json", "r") as f:
+    prioridades = json.load(f)
 
 # Ejecutar DA
 asignacion_da = de.algoritmo_da_completo(estudiantes, colegios, capacidades, preferencias, prioridades)
