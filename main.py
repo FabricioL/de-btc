@@ -3,19 +3,21 @@ import btc as btc
 import eada as eada
 import json
 
-with open("inputs/estudiantes.json", "r") as f:
+caso="ejemplo1"
+
+with open(caso+"/estudiantes.json", "r") as f:
     estudiantes = json.load(f)
 
-with open("inputs/colegios.json", "r") as f:
+with open(caso+"/colegios.json", "r") as f:
     colegios = json.load(f)
 
-with open("inputs/capacidades.json", "r") as f:
+with open(caso+"/capacidades.json", "r") as f:
     capacidades = json.load(f)
 
-with open("inputs/preferencias.json", "r") as f:
+with open(caso+"/preferencias.json", "r") as f:
     preferencias = json.load(f)
 
-with open("inputs/prioridades.json", "r") as f:
+with open(caso+"/prioridades.json", "r") as f:
     prioridades = json.load(f)
 
 # Ejecutar DA
