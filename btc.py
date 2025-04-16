@@ -8,8 +8,8 @@ def btc_post_da(estudiantes, colegios, capacidades, preferencias, prioridades, a
     for e, c in asignacion.items():
         asignaciones_colegios[c].append(e)
 
-    estudiantes_satisfechos = {e for e in estudiantes if preferencias[e][0] == asignacion[e]}
-    estudiantes_activos = [e for e in estudiantes if e not in estudiantes_satisfechos]
+    estudiantes_satisfechos = {e for e in estudiantes if e in asignacion.keys() and e in preferencias.keys() and preferencias[e][0] == asignacion[e]}
+    estudiantes_activos = [e for e in estudiantes if e in asignacion.keys() and e in preferencias.keys() and e not in estudiantes_satisfechos]
     colegios_retirados = set()
 
     ronda = 1
@@ -19,7 +19,7 @@ def btc_post_da(estudiantes, colegios, capacidades, preferencias, prioridades, a
         # Retiramos colegios que llenaron su cupo con primeras opciones
         for c in colegios:
             asignados = asignaciones_colegios[c]
-            primeros = [e for e in asignados if preferencias[e][0] == c]
+            primeros = [e for e in asignados if e in asignacion.keys() and e in preferencias.keys() and preferencias[e][0] == c]
             if len(primeros) == capacidades[c]:
                 colegios_retirados.add(c)
                 print(f"🏫 Colegio retirado: {c}")
@@ -51,8 +51,8 @@ def btc_post_da(estudiantes, colegios, capacidades, preferencias, prioridades, a
                 asignaciones_colegios[c_nuevo].append(e)
 
         # Actualizamos la lista de estudiantes activos
-        estudiantes_satisfechos = {e for e in estudiantes if preferencias[e][0] == asignacion[e]}
-        estudiantes_activos = [e for e in estudiantes if e not in estudiantes_satisfechos]
+        estudiantes_satisfechos = {e for e in estudiantes if e in asignacion.keys() and e in preferencias.keys() and preferencias[e][0] == asignacion[e]}
+        estudiantes_activos = [e for e in estudiantes if e in asignacion.keys() and e in preferencias.keys() and e not in estudiantes_satisfechos]
 
         ronda += 1
 

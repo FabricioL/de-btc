@@ -3,7 +3,7 @@ import btc as btc
 import eada as eada
 import json
 
-caso="ejemplo3"
+caso="example3Kesten"
 
 
 with open(caso+"/estudiantes.json", "r") as f:
