@@ -22,7 +22,7 @@ with open("inputs/prioridades.json", "r") as f:
 asignacion_da = de.algoritmo_da_completo(estudiantes, colegios, capacidades, preferencias, prioridades)
 
 # Ejecutar BTC con mejoras
-asasignacion_mejorada = btc.btc_post_da(estudiantes, colegios, capacidades, preferencias, prioridades, asignacion_da)
+asignacion_btcda = btc.btc_post_da(estudiantes, colegios, capacidades, preferencias, prioridades, asignacion_da)
 
 # Ejecutar Efficiency-adjusted deferred acceptance mechanism
 asignacion_eada = eada.eada(estudiantes, colegios, capacidades, preferencias, prioridades)
@@ -33,9 +33,13 @@ for e in estudiantes:
 
 
 print("\n📋 Asignación final mejorada:")
-for estudiante in sorted(asasignacion_mejorada):
-    print(f"{estudiante} → {asasignacion_mejorada[estudiante]}")
+for e in estudiantes:
+    print(f"{e} → {asignacion_btcda[e]}")
 
 print("\n📋 Resultado del EADA:")
 for e in estudiantes:
     print(f"{e} → {asignacion_eada.get(e)}")
+
+
+print("¿DA es igual a ¿BTCDA?", asignacion_da == asignacion_btcda)
+print("¿BTCDA es igual a EADA?", asignacion_btcda == asignacion_eada)
